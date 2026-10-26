@@ -1,0 +1,13 @@
+{
+  "name": "Salah Surah — Small Surahs, Duas & 99 Names of Allah",
+  "short_name": "Salah Surah",
+  "description": "A mobile-first Qur’an learning app for small surahs, duas and the 99 Names of Allah.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f4ef",
+  "theme_color": "#102d27",
+  "icons": [
+    { "src": "./icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}
