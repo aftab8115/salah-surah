@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Salah Surahs</title>
+<link rel="manifest" href="manifest.json"><meta name="theme-color" content="#0f6b57">
+<link rel="icon" href="icon.svg"><link rel="apple-touch-icon" href="icon.svg">
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#f6f4ee;--card:#fff;--tx:#1d2b27;--mu:#667570;--pr:#0f6b57;--ac:#c9a24a;--bd:#e3dfd2}
+[data-t=dark]{--bg:#111917;--card:#1a2522;--tx:#e8efec;--mu:#92a39d;--pr:#3fb99a;--ac:#d9b45f;--bd:#2a3a35}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--tx);font:16px/1.5 system-ui,sans-serif;padding-bottom:env(safe-area-inset-bottom)}
+header{background:var(--pr);color:#fff;padding:calc(env(safe-area-inset-top) + 12px) 16px 14px;position:sticky;top:0;z-index:5}
+header .row{display:flex;align-items:center;gap:8px}h1{font-size:19px;margin:0;flex:1}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.ib{background:rgba(255,255,255,.18);color:#fff;border-radius:10px;padding:6px 11px}
+main{max-width:720px;margin:0 auto;padding:14px}
+input[type=search]{width:100%;margin-top:10px;padding:11px 14px;border-radius:12px;border:0;font:inherit;background:#fff;color:#222}
+.chips{display:flex;gap:8px;overflow-x:auto;margin:0 -14px;padding:12px 14px 4px;scrollbar-width:none}.chips::-webkit-scrollbar{display:none}.chips::after{content:"";flex:0 0 6px}.bar{padding-right:2px}.bar>*{max-width:100%}
+.chip{white-space:nowrap;padding:6px 14px;border-radius:99px;border:1px solid var(--bd);background:var(--card)}
+.chip.on{background:var(--pr);color:#fff;border-color:var(--pr)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:12px 14px;margin:10px 0;display:flex;align-items:center;gap:12px;cursor:pointer}
+.num{width:38px;height:38px;border-radius:50%;background:var(--pr);color:#fff;display:grid;place-items:center;font-weight:700;font-size:14px;flex:none}
+.card .i{flex:1}.card b{display:block}.card small{color:var(--mu)}
+.card .ar{font-family:Amiri,serif;font-size:24px;color:var(--pr)}
+.daily{background:linear-gradient(135deg,var(--pr),#1c8a70);color:#fff;border-radius:14px;padding:14px;margin-top:6px;cursor:pointer}
+.daily small{opacity:.85}.prog{height:8px;background:var(--bd);border-radius:9px;margin:12px 0;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--ac)}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.bar button{padding:7px 12px;border-radius:10px;border:1px solid var(--bd);background:var(--card)}
+.bar .on{background:var(--pr);color:#fff;border-color:var(--pr)}
+.v{background:var(--card);border:1px solid var(--bd);border-radius:14px;padding:14px;margin:10px 0}
+.v .a{font-family:Amiri,'Noto Naskh Arabic',serif;direction:rtl;text-align:right;line-height:2.1}
+.v .t{color:var(--pr);font-style:italic;margin-top:6px}.v .e{color:var(--mu);margin-top:4px}
+.v .k{display:inline-block;font-size:12px;background:var(--bd);border-radius:9px;padding:0 8px;margin-bottom:4px}
+.blur .a{filter:blur(9px);cursor:pointer}.blur .a.show{filter:none}
+.nav{display:flex;justify-content:space-between;margin:14px 0}.nav button{color:var(--pr);font-weight:600}
+.note{background:var(--card);border-left:4px solid var(--ac);padding:10px 14px;border-radius:8px;color:var(--mu);font-size:14px;margin:10px 0}
+.empty{text-align:center;color:var(--mu);padding:30px}
+.v.pl{border-color:var(--ac);box-shadow:0 0 0 2px var(--ac)}.vh{display:flex;justify-content:space-between;align-items:center}.pv{background:var(--pr);color:#fff;border-radius:50%;width:36px;height:36px}.bar select{padding:7px;border-radius:10px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font:inherit}</style></head><body>
+<header><div class="row"><button class="ib" id="back" hidden>←</button><h1 id="ttl">Salah Surahs</h1>
+<button class="ib" id="inst" hidden>Install</button><button class="ib" id="dk">🌙</button></div>
+<div id="sw"><input type="search" id="q" placeholder="Search name, number, meaning, Arabic…"></div></header>
+<main id="m"></main>
+<script>
+const D=[
+{n:108,name:"Al-Kawthar",mean:"The Abundance",
+ar:"إِنَّا أَعْطَيْنَاكَ الْكَوْثَرَ|فَصَلِّ لِرَبِّكَ وَانْحَرْ|إِنَّ شَانِئَكَ هُوَ الْأَبْتَرُ",
+tr:"Innā aʿṭaynāka l-kawthar|Fa ṣalli li-rabbika wanḥar|Inna shāni'aka huwa l-abtar",
+en:"Indeed, We have granted you al-Kawthar.|So pray to your Lord and sacrifice.|Indeed, your enemy is the one cut off."},
+{n:103,name:"Al-ʿAsr",mean:"The Time",
+ar:"وَالْعَصْرِ|إِنَّ الْإِنسَانَ لَفِي خُسْرٍ|إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ وَتَوَاصَوْا بِالْحَقِّ وَتَوَاصَوْا بِالصَّبْرِ",
+tr:"Wal-ʿaṣr|Innal-insāna lafī khusr|Illal-ladhīna āmanū wa ʿamiluṣ-ṣāliḥāti wa tawāṣaw bil-ḥaqqi wa tawāṣaw biṣ-ṣabr",
+en:"By time,|indeed, mankind is in loss,|except those who believe, do righteous deeds, and urge one another to truth and to patience."},
+{n:110,name:"An-Naṣr",mean:"The Help",
+ar:"إِذَا جَاءَ نَصْرُ اللَّهِ وَالْفَتْحُ|وَرَأَيْتَ النَّاسَ يَدْخُلُونَ فِي دِينِ اللَّهِ أَفْوَاجًا|فَسَبِّحْ بِحَمْدِ رَبِّكَ وَاسْتَغْفِرْهُ إِنَّهُ كَانَ تَوَّابًا",
+tr:"Idhā jā'a naṣrullāhi wal-fatḥ|Wa ra'aytan-nāsa yadkhulūna fī dīnillāhi afwājā|Fa sabbiḥ bi-ḥamdi rabbika wastaghfirh, innahu kāna tawwābā",
+en:"When the help of Allah and the conquest come,|and you see people entering Allah's religion in multitudes,|then glorify your Lord with praise and seek His forgiveness. Indeed, He is ever Accepting of repentance."},
+{n:112,name:"Al-Ikhlāṣ",mean:"Sincerity",
+ar:"قُلْ هُوَ اللَّهُ أَحَدٌ|اللَّهُ الصَّمَدُ|لَمْ يَلِدْ وَلَمْ يُولَدْ|وَلَمْ يَكُن لَّهُ كُفُوًا أَحَدٌ",
+tr:"Qul huwallāhu aḥad|Allāhuṣ-ṣamad|Lam yalid wa lam yūlad|Wa lam yakul-lahu kufuwan aḥad",
+en:"Say: He is Allah, the One.|Allah, the Eternal Refuge.|He neither begets nor is born,|and there is none comparable to Him."},
+{n:106,name:"Quraysh",mean:"Quraysh",
+ar:"لِإِيلَافِ قُرَيْشٍ|إِيلَافِهِمْ رِحْلَةَ الشِّتَاءِ وَالصَّيْفِ|فَلْيَعْبُدُوا رَبَّ هَٰذَا الْبَيْتِ|الَّذِي أَطْعَمَهُم مِّن جُوعٍ وَآمَنَهُم مِّنْ خَوْفٍ",
+tr:"Li-īlāfi quraysh|Īlāfihim riḥlatash-shitā'i waṣ-ṣayf|Falya'budū rabba hādhal-bayt|Alladhī aṭʿamahum min jūʿin wa āmanahum min khawf",
+en:"For the security of the Quraysh,|their security in the winter and summer journeys,|let them worship the Lord of this House,|who fed them against hunger and secured them from fear."},
+{n:105,name:"Al-Fīl",mean:"The Elephant",
+ar:"أَلَمْ تَرَ كَيْفَ فَعَلَ رَبُّكَ بِأَصْحَابِ الْفِيلِ|أَلَمْ يَجْعَلْ كَيْدَهُمْ فِي تَضْلِيلٍ|وَأَرْسَلَ عَلَيْهِمْ طَيْرًا أَبَابِيلَ|تَرْمِيهِم بِحِجَارَةٍ مِّن سِجِّيلٍ|فَجَعَلَهُمْ كَعَصْفٍ مَّأْكُولٍ",
+tr:"Alam tara kayfa faʿala rabbuka bi-aṣḥābil-fīl|Alam yajʿal kaydahum fī taḍlīl|Wa arsala ʿalayhim ṭayran abābīl|Tarmīhim bi-ḥijāratin min sijjīl|Fa jaʿalahum ka-ʿaṣfin ma'kūl",
+en:"Have you not seen how your Lord dealt with the people of the elephant?|Did He not make their plot go astray?|And He sent against them flocks of birds,|striking them with stones of baked clay,|and made them like eaten straw."},
+{n:111,name:"Al-Masad",mean:"The Palm Fiber",
+ar:"تَبَّتْ يَدَا أَبِي لَهَبٍ وَتَبَّ|مَا أَغْنَىٰ عَنْهُ مَالُهُ وَمَا كَسَبَ|سَيَصْلَىٰ نَارًا ذَاتَ لَهَبٍ|وَامْرَأَتُهُ حَمَّالَةَ الْحَطَبِ|فِي جِيدِهَا حَبْلٌ مِّن مَّسَدٍ",
+tr:"Tabbat yadā abī lahabin wa tabb|Mā aghnā ʿanhu māluhu wa mā kasab|Sayaṣlā nāran dhāta lahab|Wamra'atuhu ḥammālatal-ḥaṭab|Fī jīdihā ḥablun min masad",
+en:"May the hands of Abu Lahab perish, and he has perished.|His wealth and gains did not benefit him.|He will burn in a blazing Fire,|and his wife, the carrier of firewood,|around her neck a rope of twisted fiber."},
+{n:113,name:"Al-Falaq",mean:"The Daybreak",
+ar:"قُلْ أَعُوذُ بِرَبِّ الْفَلَقِ|مِن شَرِّ مَا خَلَقَ|وَمِن شَرِّ غَاسِقٍ إِذَا وَقَبَ|وَمِن شَرِّ النَّفَّاثَاتِ فِي الْعُقَدِ|وَمِن شَرِّ حَاسِدٍ إِذَا حَسَدَ",
+tr:"Qul aʿūdhu bi-rabbil-falaq|Min sharri mā khalaq|Wa min sharri ghāsiqin idhā waqab|Wa min sharrin-naffāthāti fil-ʿuqad|Wa min sharri ḥāsidin idhā ḥasad",
+en:"Say: I seek refuge in the Lord of daybreak,|from the evil of what He created,|from the evil of darkness when it settles,|from the evil of those who blow on knots,|and from the evil of an envier when he envies."},
+{n:109,name:"Al-Kāfirūn",mean:"The Disbelievers",
+ar:"قُلْ يَا أَيُّهَا الْكَافِرُونَ|لَا أَعْبُدُ مَا تَعْبُدُونَ|وَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ|وَلَا أَنَا عَابِدٌ مَّا عَبَدتُّمْ|وَلَا أَنتُمْ عَابِدُونَ مَا أَعْبُدُ|لَكُمْ دِينُكُمْ وَلِيَ دِينِ",
+tr:"Qul yā ayyuhal-kāfirūn|Lā aʿbudu mā taʿbudūn|Wa lā antum ʿābidūna mā aʿbud|Wa lā anā ʿābidun mā ʿabattum|Wa lā antum ʿābidūna mā aʿbud|Lakum dīnukum wa liya dīn",
+en:"Say: O disbelievers,|I do not worship what you worship,|nor do you worship what I worship.|Nor will I worship what you have worshipped,|nor will you worship what I worship.|For you is your religion, and for me is mine."},
+{n:114,name:"An-Nās",mean:"Mankind",
+ar:"قُلْ أَعُوذُ بِرَبِّ النَّاسِ|مَلِكِ النَّاسِ|إِلَٰهِ النَّاسِ|مِن شَرِّ الْوَسْوَاسِ الْخَنَّاسِ|الَّذِي يُوَسْوِسُ فِي صُدُورِ النَّاسِ|مِنَ الْجِنَّةِ وَالنَّاسِ",
+tr:"Qul aʿūdhu bi-rabbin-nās|Malikin-nās|Ilāhin-nās|Min sharril-waswāsil-khannās|Alladhī yuwaswisu fī ṣudūrin-nās|Minal-jinnati wan-nās",
+en:"Say: I seek refuge in the Lord of mankind,|the Sovereign of mankind,|the God of mankind,|from the evil of the retreating whisperer,|who whispers in the hearts of mankind,|from among jinn and mankind."},
+{n:107,name:"Al-Māʿūn",mean:"Small Kindnesses",
+ar:"أَرَأَيْتَ الَّذِي يُكَذِّبُ بِالدِّينِ|فَذَٰلِكَ الَّذِي يَدُعُّ الْيَتِيمَ|وَلَا يَحُضُّ عَلَىٰ طَعَامِ الْمِسْكِينِ|فَوَيْلٌ لِّلْمُصَلِّينَ|الَّذِينَ هُمْ عَن صَلَاتِهِمْ سَاهُونَ|الَّذِينَ هُمْ يُرَاءُونَ|وَيَمْنَعُونَ الْمَاعُونَ",
+tr:"Ara'aytal-ladhī yukadhdhibu bid-dīn|Fa dhālikal-ladhī yaduʿʿul-yatīm|Wa lā yaḥuḍḍu ʿalā ṭaʿāmil-miskīn|Fa waylul-lil-muṣallīn|Alladhīna hum ʿan ṣalātihim sāhūn|Alladhīna hum yurā'ūn|Wa yamnaʿūnal-māʿūn",
+en:"Have you seen the one who denies the Judgment?|That is the one who repels the orphan|and does not urge feeding the poor.|So woe to those who pray,|who are heedless of their prayer,|who show off,|and withhold small kindnesses."},
+{n:97,name:"Al-Qadr",mean:"The Night of Decree",
+ar:"إِنَّا أَنزَلْنَاهُ فِي لَيْلَةِ الْقَدْرِ|وَمَا أَدْرَاكَ مَا لَيْلَةُ الْقَدْرِ|لَيْلَةُ الْقَدْرِ خَيْرٌ مِّنْ أَلْفِ شَهْرٍ|تَنَزَّلُ الْمَلَائِكَةُ وَالرُّوحُ فِيهَا بِإِذْنِ رَبِّهِم مِّن كُلِّ أَمْرٍ|سَلَامٌ هِيَ حَتَّىٰ مَطْلَعِ الْفَجْرِ",
+tr:"Innā anzalnāhu fī laylatil-qadr|Wa mā adrāka mā laylatul-qadr|Laylatul-qadri khayrun min alfi shahr|Tanazzalul-malā'ikatu war-rūḥu fīhā bi-idhni rabbihim min kulli amr|Salāmun hiya ḥattā maṭlaʿil-fajr",
+en:"Indeed, We sent the Qur'an down on the Night of Decree.|And what can make you know what the Night of Decree is?|The Night of Decree is better than a thousand months.|In it the angels and the Spirit descend, by their Lord's permission, with every decree.|Peace it is, until the rise of dawn."},
+{n:102,name:"At-Takāthur",mean:"Competing for More",
+ar:"أَلْهَاكُمُ التَّكَاثُرُ|حَتَّىٰ زُرْتُمُ الْمَقَابِرَ|كَلَّا سَوْفَ تَعْلَمُونَ|ثُمَّ كَلَّا سَوْفَ تَعْلَمُونَ|كَلَّا لَوْ تَعْلَمُونَ عِلْمَ الْيَقِينِ|لَتَرَوُنَّ الْجَحِيمَ|ثُمَّ لَتَرَوُنَّهَا عَيْنَ الْيَقِينِ|ثُمَّ لَتُسْأَلُنَّ يَوْمَئِذٍ عَنِ النَّعِيمِ",
+tr:"Alhākumut-takāthur|Ḥattā zurtumul-maqābir|Kallā sawfa taʿlamūn|Thumma kallā sawfa taʿlamūn|Kallā law taʿlamūna ʿilmal-yaqīn|Latarawunnal-jaḥīm|Thumma latarawunnahā ʿaynal-yaqīn|Thumma latus'alunna yawma'idhin ʿanin-naʿīm",
+en:"Competing for more distracts you|until you visit the graves.|No! You will soon know.|Then no! You will soon know.|No! If only you knew with certain knowledge,|you would surely see the Hellfire.|Then you will surely see it with the eye of certainty.|Then, on that Day, you will surely be asked about the pleasures."},
+{n:99,name:"Az-Zalzalah",mean:"The Earthquake",
+ar:"إِذَا زُلْزِلَتِ الْأَرْضُ زِلْزَالَهَا|وَأَخْرَجَتِ الْأَرْضُ أَثْقَالَهَا|وَقَالَ الْإِنسَانُ مَا لَهَا|يَوْمَئِذٍ تُحَدِّثُ أَخْبَارَهَا|بِأَنَّ رَبَّكَ أَوْحَىٰ لَهَا|يَوْمَئِذٍ يَصْدُرُ النَّاسُ أَشْتَاتًا لِّيُرَوْا أَعْمَالَهُمْ|فَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ خَيْرًا يَرَهُ|وَمَن يَعْمَلْ مِثْقَالَ ذَرَّةٍ شَرًّا يَرَهُ",
+tr:"Idhā zulzilatil-arḍu zilzālahā|Wa akhrajatil-arḍu athqālahā|Wa qālal-insānu mā lahā|Yawma'idhin tuḥaddithu akhbārahā|Bi'anna rabbaka awḥā lahā|Yawma'idhin yaṣdurun-nāsu ashtātan liyuraw aʿmālahum|Fa man yaʿmal mithqāla dharratin khayray yarah|Wa man yaʿmal mithqāla dharratin sharray yarah",
+en:"When the earth is shaken with its violent quaking,|and the earth brings out its burdens,|and man says, \"What is wrong with it?\"|On that Day it will tell its news,|because your Lord has inspired it.|On that Day people will come forth in separate groups to be shown their deeds.|So whoever does an atom's weight of good will see it,|and whoever does an atom's weight of evil will see it."},
+{n:95,name:"At-Tīn",mean:"The Fig",
+ar:"وَالتِّينِ وَالزَّيْتُونِ|وَطُورِ سِينِينَ|وَهَٰذَا الْبَلَدِ الْأَمِينِ|لَقَدْ خَلَقْنَا الْإِنسَانَ فِي أَحْسَنِ تَقْوِيمٍ|ثُمَّ رَدَدْنَاهُ أَسْفَلَ سَافِلِينَ|إِلَّا الَّذِينَ آمَنُوا وَعَمِلُوا الصَّالِحَاتِ فَلَهُمْ أَجْرٌ غَيْرُ مَمْنُونٍ|فَمَا يُكَذِّبُكَ بَعْدُ بِالدِّينِ|أَلَيْسَ اللَّهُ بِأَحْكَمِ الْحَاكِمِينَ",
+tr:"Wat-tīni waz-zaytūn|Wa ṭūri sīnīn|Wa hādhal-baladil-amīn|Laqad khalaqnal-insāna fī aḥsani taqwīm|Thumma radadnāhu asfala sāfilīn|Illal-ladhīna āmanū wa ʿamiluṣ-ṣāliḥāti falahum ajrun ghayru mamnūn|Famā yukadhdhibuka baʿdu bid-dīn|Alaysallāhu bi-aḥkamil-ḥākimīn",
+en:"By the fig and the olive,|and Mount Sinai,|and this secure city,|We certainly created man in the best form,|then returned him to the lowest of the low,|except those who believe and do righteous deeds, for they will have a reward never cut off.|So what makes you deny the Judgment after this?|Is Allah not the most just of judges?"},
+{n:94,name:"Ash-Sharḥ",mean:"The Relief",
+ar:"أَلَمْ نَشْرَحْ لَكَ صَدْرَكَ|وَوَضَعْنَا عَنكَ وِزْرَكَ|الَّذِي أَنقَضَ ظَهْرَكَ|وَرَفَعْنَا لَكَ ذِكْرَكَ|فَإِنَّ مَعَ الْعُسْرِ يُسْرًا|إِنَّ مَعَ الْعُسْرِ يُسْرًا|فَإِذَا فَرَغْتَ فَانصَبْ|وَإِلَىٰ رَبِّكَ فَارْغَب",
+tr:"Alam nashraḥ laka ṣadrak|Wa waḍaʿnā ʿanka wizrak|Alladhī anqaḍa ẓahrak|Wa rafaʿnā laka dhikrak|Fa inna maʿal-ʿusri yusrā|Inna maʿal-ʿusri yusrā|Fa idhā faraghta fanṣab|Wa ilā rabbika farghab",
+en:"Did We not expand your chest for you,|and remove from you your burden|which weighed down your back,|and raise your reputation for you?|So indeed, with hardship comes ease.|Indeed, with hardship comes ease.|So when you are free, strive on,|and to your Lord turn your longing."},
+{n:104,name:"Al-Humazah",mean:"The Slanderer",
+ar:"وَيْلٌ لِّكُلِّ هُمَزَةٍ لُّمَزَةٍ|الَّذِي جَمَعَ مَالًا وَعَدَّدَهُ|يَحْسَبُ أَنَّ مَالَهُ أَخْلَدَهُ|كَلَّا ۖ لَيُنبَذَنَّ فِي الْحُطَمَةِ|وَمَا أَدْرَاكَ مَا الْحُطَمَةُ|نَارُ اللَّهِ الْمُوقَدَةُ|الَّتِي تَطَّلِعُ عَلَى الْأَفْئِدَةِ|إِنَّهَا عَلَيْهِم مُّؤْصَدَةٌ|فِي عَمَدٍ مُّمَدَّدَةٍ",
+tr:"Waylun li-kulli humazatil-lumazah|Alladhī jamaʿa mālan wa ʿaddadah|Yaḥsabu anna mālahu akhladah|Kallā layunbadhanna fil-ḥuṭamah|Wa mā adrāka mal-ḥuṭamah|Nārullāhil-mūqadah|Allatī taṭṭaliʿu ʿalal-af'idah|Innahā ʿalayhim mu'ṣadah|Fī ʿamadin mumaddadah",
+en:"Woe to every slanderer and backbiter,|who collects wealth and counts it over,|thinking his wealth will make him last forever.|No! He will surely be thrown into the Crusher.|And what can make you know what the Crusher is?|It is the fire of Allah, kindled,|which reaches the hearts.|Indeed, it will be closed over them|in extended columns."},
+{n:93,name:"Aḍ-Ḍuḥā",mean:"The Morning Brightness",
+ar:"وَالضُّحَىٰ|وَاللَّيْلِ إِذَا سَجَىٰ|مَا وَدَّعَكَ رَبُّكَ وَمَا قَلَىٰ|وَلَلْآخِرَةُ خَيْرٌ لَّكَ مِنَ الْأُولَىٰ|وَلَسَوْفَ يُعْطِيكَ رَبُّكَ فَتَرْضَىٰ|أَلَمْ يَجِدْكَ يَتِيمًا فَآوَىٰ|وَوَجَدَكَ ضَالًّا فَهَدَىٰ|وَوَجَدَكَ عَائِلًا فَأَغْنَىٰ|فَأَمَّا الْيَتِيمَ فَلَا تَقْهَرْ|وَأَمَّا السَّائِلَ فَلَا تَنْهَرْ|وَأَمَّا بِنِعْمَةِ رَبِّكَ فَحَدِّثْ",
+tr:"Waḍ-ḍuḥā|Wal-layli idhā sajā|Mā waddaʿaka rabbuka wa mā qalā|Wa lal-ākhiratu khayrul-laka minal-ūlā|Wa lasawfa yuʿṭīka rabbuka fatarḍā|Alam yajidka yatīman fa-āwā|Wa wajadaka ḍāllan fahadā|Wa wajadaka ʿā'ilan fa-aghnā|Fa ammal-yatīma falā taqhar|Wa ammas-sā'ila falā tanhar|Wa ammā biniʿmati rabbika faḥaddith",
+en:"By the morning brightness,|and the night when it grows still,|your Lord has not abandoned you, nor despised you.|And the Hereafter is better for you than the present.|And your Lord is going to give you, and you will be satisfied.|Did He not find you an orphan and give you shelter?|And find you lost and guide you?|And find you in need and make you self-sufficient?|So as for the orphan, do not oppress him,|and as for the one who asks, do not scold him,|and as for the favor of your Lord, speak of it."}
+];
+D.forEach(s=>{s.a=s.ar.split("|");s.t=s.tr.split("|");s.e=s.en.split("|");s.c=s.a.length});D.sort((a,b)=>a.c-b.c);
+const $=s=>document.querySelector(s);
+let S={fav:[],mem:[],fs:32,tr:1,en:1,dk:0,hide:0,rc:"Alafasy/mp3/",sp:1,rp:1};
+try{Object.assign(S,JSON.parse(localStorage.getItem("ss")||"{}"))}catch(e){}
+const save=()=>{try{localStorage.setItem("ss",JSON.stringify(S))}catch(e){}};
+const has=(k,n)=>S[k].includes(n);
+const tog=(k,n)=>{const i=S[k].indexOf(n);i<0?S[k].push(n):S[k].splice(i,1);save()};
+let q="",f="all";
+const F=[["all","All"],["s","Short (≤4)"],["m","Medium (5–6)"],["l","Longer (7+)"],["new","Not memorized"],["mem","Memorized ✓"],["fav","Favorites ★"]];
+const aud=new Audio();let pl={n:0,i:-1,all:0,rep:0};
+const pad=(x,l)=>String(x).padStart(l,"0");
+function mark(){const on=!aud.paused&&pl.i>=0;document.querySelectorAll(".v").forEach((e,k)=>{const a=on&&pl.i==k;e.classList.toggle("pl",a);const b=e.querySelector(".pv");if(b)b.textContent=a?"⏸":"▶"});const p=$("#pa");if(p)p.textContent=on&&pl.all?"⏹ Stop":"▶ Play all"}
+function stopA(){aud.pause();pl.i=-1;mark()}
+function playV(n,i,all){pl={n,i,all,rep:0};const a=$("#as");if(a)a.hidden=1;aud.src="https://verses.quran.foundation/"+S.rc+pad(n,3)+pad(i+1,3)+".mp3";aud.defaultPlaybackRate=aud.playbackRate=S.sp;aud.play().catch(()=>{});mark()}
+aud.onended=()=>{if(S.rp==0||pl.rep+1<S.rp){pl.rep++;aud.currentTime=0;aud.play();return}
+const s=D.find(x=>x.n==pl.n);if(pl.all&&pl.i+1<s.c)playV(pl.n,pl.i+1,1);else stopA()};
+aud.onerror=()=>{const a=$("#as");if(a){a.hidden=0;a.textContent="Couldn't load the audio. Please check your internet connection."}pl.i=-1;mark()};
+function theme(){document.documentElement.dataset.t=S.dk?"dark":"";$("#dk").textContent=S.dk?"☀️":"🌙"}
+function home(){stopA();
+  $("#back").hidden=1;$("#sw").hidden=0;$("#ttl").textContent="Salah Surahs";
+  const d=D[Math.floor(Date.now()/864e5)%D.length];
+  const r=D.filter(s=>{
+    const t=(s.name+s.mean+s.n+s.en+s.tr+s.ar).toLowerCase();
+    if(q&&!t.includes(q))return 0;
+    return f=="all"||(f=="s"&&s.c<=4)||(f=="m"&&s.c>=5&&s.c<=6)||(f=="l"&&s.c>=7)||(f=="new"&&!has("mem",s.n))||(f=="mem"&&has("mem",s.n))||(f=="fav"&&has("fav",s.n))});
+  const p=Math.round(S.mem.length/D.length*100);
+  $("#m").innerHTML=`<div class="daily" onclick="location.hash='${d.n}'"><small>Surah of the day</small><div><b>${d.name}</b> · ${d.mean} · ${d.c} verses</div></div>
+  <div class="prog"><i style="width:${p}%"></i></div><small style="color:var(--mu)">${S.mem.length} of ${D.length} memorized (${p}%)</small>
+  <div class="note">Recite one of these after Surah al-Fātiḥah in the first two rakʿahs of fard prayers (and in sunnah/nafl prayers). Sorted from shortest to longest.</div>
+  <div class="chips">${F.map(x=>`<button class="chip ${f==x[0]?"on":""}" data-f="${x[0]}">${x[1]}</button>`).join("")}</div>`+
+  (r.length?r.map(s=>`<div class="card" onclick="location.hash='${s.n}'"><div class="num">${s.n}</div><div class="i"><b>${s.name}</b><small>${s.mean} · ${s.c} verses ${has("mem",s.n)?"· ✓":""}${has("fav",s.n)?" · ★":""}</small></div><div class="ar">${s.a[0].split(" ").slice(0,2).join(" ")}</div></div>`).join(""):`<div class="empty">No surahs found.</div>`);
+  document.querySelectorAll(".chip").forEach(b=>b.onclick=()=>{f=b.dataset.f;home()});
+}
+function detail(n){
+  const i=D.findIndex(s=>s.n==n),s=D[i];if(!s)return home();if(pl.n!=n)stopA();
+  $("#back").hidden=0;$("#sw").hidden=1;$("#ttl").textContent=`${s.n}. ${s.name}`;
+  const pv=D[i-1],nx=D[i+1];
+  $("#m").innerHTML=`<div class="bar">
+  <button id="bm" class="${has("mem",n)?"on":""}">${has("mem",n)?"✓ Memorized":"Mark memorized"}</button>
+  <button id="bf" class="${has("fav",n)?"on":""}">★ Favorite</button>
+  <button id="bt" class="${S.tr?"on":""}">Transliteration</button>
+  <button id="be" class="${S.en?"on":""}">Translation</button>
+  <button id="bh" class="${S.hide?"on":""}">Test myself</button>
+  <button id="fm">A−</button><button id="fp">A+</button></div>
+  <div class="bar"><button id="pa">▶ Play all</button><select id="rc"><option value="Alafasy/mp3/">Mishary Alafasy</option><option value="AbdulBaset/Mujawwad/mp3/">AbdulBaset (Mujawwad)</option></select><select id="rp"><option value="1">Repeat ×1</option><option value="3">Repeat ×3</option><option value="5">Repeat ×5</option><option value="0">Loop ∞</option></select><select id="sp"><option value="0.75">0.75× slow</option><option value="1">1× normal</option><option value="1.25">1.25× fast</option></select></div><div class="note" id="as" hidden></div>
+  <div class="note">${s.mean} · ${s.c} verses${S.hide?" · Tap a blurred verse to reveal it":""}</div>
+  <div class="${S.hide?"blur":""}">${s.a.map((a,k)=>`<div class="v"><div class="vh"><span class="k">${k+1}</span><button class="pv" aria-label="Play verse ${k+1}">▶</button></div><div class="a" style="font-size:${S.fs}px">${a}</div>${S.tr?`<div class="t">${s.t[k]}</div>`:""}${S.en?`<div class="e">${s.e[k]}</div>`:""}</div>`).join("")}</div>
+  <div class="nav"><button ${pv?`onclick="location.hash='${pv.n}'"`:"disabled"}>${pv?"← "+pv.name:""}</button><button ${nx?`onclick="location.hash='${nx.n}'"`:"disabled"}>${nx?nx.name+" →":""}</button></div>`;
+  const re=()=>detail(n);
+  $("#bm").onclick=()=>{tog("mem",n);re()};$("#bf").onclick=()=>{tog("fav",n);re()};
+  $("#bt").onclick=()=>{S.tr^=1;save();re()};$("#be").onclick=()=>{S.en^=1;save();re()};
+  $("#bh").onclick=()=>{S.hide^=1;save();re()};
+  $("#fm").onclick=()=>{S.fs=Math.max(22,S.fs-4);save();re()};$("#fp").onclick=()=>{S.fs=Math.min(64,S.fs+4);save();re()};
+  $("#rc").value=S.rc;$("#rp").value=S.rp;$("#sp").value=S.sp;
+  $("#pa").onclick=()=>(pl.n==n&&pl.i>=0&&!aud.paused&&pl.all)?stopA():playV(n,0,1);
+  $("#rc").onchange=e=>{S.rc=e.target.value;save();if(!aud.paused&&pl.n==n)playV(n,pl.i,pl.all)};
+  $("#rp").onchange=e=>{S.rp=+e.target.value;save()};
+  $("#sp").onchange=e=>{S.sp=+e.target.value;save();aud.defaultPlaybackRate=aud.playbackRate=S.sp};
+  document.querySelectorAll(".pv").forEach((b,k)=>b.onclick=()=>(pl.n==n&&pl.i==k&&!aud.paused)?stopA():playV(n,k,0));
+  mark();
+  document.querySelectorAll(".blur .a").forEach(e=>e.onclick=()=>e.classList.toggle("show"));
+  scrollTo(0,0);
+}
+function route(){const h=location.hash.slice(1);h?detail(+h):home()}
+$("#q").oninput=e=>{q=e.target.value.trim().toLowerCase();home()};
+$("#back").onclick=()=>{location.hash=""};
+$("#dk").onclick=()=>{S.dk^=1;save();theme()};
+addEventListener("hashchange",route);theme();route();
+let ip;addEventListener("beforeinstallprompt",e=>{e.preventDefault();ip=e;$("#inst").hidden=0});
+$("#inst").onclick=async()=>{if(ip){ip.prompt();await ip.userChoice;$("#inst").hidden=1}};
+if("serviceWorker" in navigator)addEventListener("load",()=>navigator.serviceWorker.register("sw.js"));
+</script></body></html>

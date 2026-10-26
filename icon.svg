@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-labelledby="title desc">
+  <title id="title">Surah Learning</title>
+  <desc id="desc">A minimal open book with a crescent moon and star, representing Islamic learning.</desc>
+  <rect width="512" height="512" rx="112" fill="#0B5B4B"/>
+  <circle cx="256" cy="176" r="76" fill="#F4D98B"/>
+  <circle cx="286" cy="151" r="68" fill="#0B5B4B"/>
+  <path d="M333 103l8 17 18 3-13 13 3 18-16-9-16 9 3-18-13-13 18-3z" fill="#F4D98B"/>
+  <path d="M88 276c54-25 111-20 168 14v126c-57-34-114-39-168-14z" fill="#FFFDF6" stroke="#F4D98B" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M424 276c-54-25-111-20-168 14v126c57-34 114-39 168-14z" fill="#FFFDF6" stroke="#F4D98B" stroke-width="8" stroke-linejoin="round"/>
+  <path d="M256 290v126" fill="none" stroke="#D9E8DF" stroke-width="7" stroke-linecap="round"/>
+  <path d="M116 309c34-10 68-6 102 10M116 339c34-10 68-6 102 10M396 309c-34-10-68-6-102 10M396 339c-34-10-68-6-102 10" fill="none" stroke="#0B5B4B" stroke-width="7" stroke-linecap="round" opacity=".72"/>
+</svg>
